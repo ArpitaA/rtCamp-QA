@@ -24,9 +24,9 @@ public class PostUpdate {
 	
 	public static void PostUpdatePublic(WebDriver driver) throws InterruptedException, AWTException
 	{
-	driver.findElement(By.cssSelector(".rtmedia-add-media-button")).click();
+	driver.findElement(By.cssSelector(".rtmedia-add-media-button")).click();//click on media
 	Thread.sleep(5000);
-	setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");
+	setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");//enter path for image
 	//native key strokes for CTRL, V and ENTER keys
 	Robot robot = new Robot();
 	robot.keyPress(KeyEvent.VK_CONTROL);
@@ -36,10 +36,12 @@ public class PostUpdate {
 	robot.keyPress(KeyEvent.VK_ENTER);
 	robot.keyRelease(KeyEvent.VK_ENTER);
 	robot.delay(1000);
+	//wait until media uploads
 	new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOfElementLocated(By.id("rtm-upload-start-notice")));
 	System.out.println("File uploaded successfully");
-	driver.findElement(By.id("whats-new")).sendKeys("Test");
-	driver.findElement(By.id("aw-whats-new-submit")).click();
+	driver.findElement(By.id("whats-new")).sendKeys("Test");//enter update text
+	driver.findElement(By.id("aw-whats-new-submit")).click();//click on submit
+	//wait until image is displayed
 	new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li.just-posted")));
 	System.out.println("post updated successfully");
 	}

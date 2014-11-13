@@ -23,9 +23,9 @@ public class UploadPrivatePost {
 	}
 	public static void PostPrivacy(WebDriver driver) throws InterruptedException, AWTException
 	{
-		driver.findElement(By.cssSelector(".rtmedia-add-media-button")).click();
+		driver.findElement(By.cssSelector(".rtmedia-add-media-button")).click();//click on add button
 		Thread.sleep(5000);
-		setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");
+		setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");//path for image
 		//native key strokes for CTRL, V and ENTER keys
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -35,15 +35,18 @@ public class UploadPrivatePost {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		robot.delay(1000);
+		//wait until file is uploaded
 		new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOfElementLocated(By.id("rtm-upload-start-notice")));
 		System.out.println("File uploaded successfully");
-		driver.findElement(By.id("whats-new")).sendKeys("Test");
-		Select privacy=new Select(driver.findElement(By.id("rtSelectPrivacy")));
+		driver.findElement(By.id("whats-new")).sendKeys("Test");//enter text for post
+		Select privacy=new Select(driver.findElement(By.id("rtSelectPrivacy")));//select privacy for post
 		privacy.selectByVisibleText("Private");
 		Thread.sleep(1000);
-		driver.findElement(By.id("aw-whats-new-submit")).click();
+		driver.findElement(By.id("aw-whats-new-submit")).click();//click on submit
+		//wait until post is updated successfully
 		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li.just-posted")));
 		System.out.println("post update successfully");
+		//log out to check if post is visible to other users
 		driver.findElement(By.linkText("Log Out")).click();
 		Thread.sleep(5000);
 		driver.get("http://demo.rtcamp.com/rtmedia/");

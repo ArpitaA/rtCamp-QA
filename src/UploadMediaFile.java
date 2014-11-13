@@ -23,18 +23,18 @@ public class UploadMediaFile {
 	}
 	public static void uploadmedia(WebDriver driver) throws InterruptedException, AWTException
 	{
-		driver.get("http://demo.rtcamp.com/rtmedia/members/test-sel/media/");
+		driver.get("http://demo.rtcamp.com/rtmedia/members/test-sel/media/");//link for media page 
 		Thread.sleep(3000);
-		driver.findElement(By.id("rtm_show_upload_ui")).click();
+		driver.findElement(By.id("rtm_show_upload_ui")).click();//click on upload
 		Thread.sleep(3000);
-		Select album=new Select(driver.findElement(By.className("rtmedia-user-album-list")));
+		Select album=new Select(driver.findElement(By.className("rtmedia-user-album-list")));//select album
 		album.selectByVisibleText("Wall Posts");
 		Thread.sleep(2000);
-		Select privacy=new Select(driver.findElement(By.id("rtSelectPrivacy")));
+		Select privacy=new Select(driver.findElement(By.id("rtSelectPrivacy")));//select privacy for media 
 		privacy.selectByVisibleText("Private");
-		driver.findElement(By.id("rtMedia-upload-button")).click();
+		driver.findElement(By.id("rtMedia-upload-button")).click();//click on upload button
 		Thread.sleep(5000);
-		setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");
+		setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");//path for image
 		//native key strokes for CTRL, V and ENTER keys
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -44,9 +44,11 @@ public class UploadMediaFile {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		robot.delay(1000);
+		//wait for upload status
 		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.className("plupload_file_status")));
-		driver.findElement(By.id("rtmedia_upload_terms_conditions")).click();
-		driver.findElement(By.className("start-media-upload")).click();
+		driver.findElement(By.id("rtmedia_upload_terms_conditions")).click();//accept terms and conditions
+		driver.findElement(By.className("start-media-upload")).click();//click on upload media
+		//wait until media is uploaded
 		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.className("rtmedia-list-item")));
 		System.out.println("File uploaded to media successfully");
 	}

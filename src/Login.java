@@ -18,11 +18,12 @@ public class Login {
 }
 	public static void UserLogin(WebDriver driver) throws InterruptedException
 	{
-		driver.findElement(By.cssSelector(".rtp-login.button.tiny")).click();
+		driver.findElement(By.cssSelector(".rtp-login.button.tiny")).click();//click login button
 		Thread.sleep(5000);
-		driver.findElement(By.id("bp-login-widget-user-login")).sendKeys("test.sel");
-		driver.findElement(By.id("bp-login-widget-user-pass")).sendKeys("testsel");
-		driver.findElement(By.id("bp-login-widget-submit")).click();
+		driver.findElement(By.id("bp-login-widget-user-login")).sendKeys("test.sel");//enter username
+		driver.findElement(By.id("bp-login-widget-user-pass")).sendKeys("testsel");//enter password
+		driver.findElement(By.id("bp-login-widget-submit")).click();//click on submit button
+		//wait until username appears on page.
 		new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.rtp-current-user-avatar.dropdown[title='test-sel']")));
 	}
 }

@@ -18,11 +18,12 @@ public class profileupdate {
 	}
 	public static void updateprofile(WebDriver driver) throws InterruptedException, AWTException
 	{
-		driver.findElement(By.linkText("Your Profile")).click();
+		driver.findElement(By.linkText("Your Profile")).click();//click on profile link
 		Thread.sleep(10000);
 		driver.findElement(By.id("first_name")).clear();
-		driver.findElement(By.id("first_name")).sendKeys("first name");
-		driver.findElement(By.id("submit")).click();
+		driver.findElement(By.id("first_name")).sendKeys("first name");//enter firstname
+		driver.findElement(By.id("submit")).click();//click on submit button
+		//wait until profile is updated
 		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.className("updated")));
 		System.out.println("Profile updated successfully");
 	}

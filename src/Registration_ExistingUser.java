@@ -15,8 +15,9 @@ public class Registration_ExistingUser {
 		Thread.sleep(5000);
 		driver.findElement(By.linkText("Register")).click();
 		Thread.sleep(3000);
-		driver.findElement(By.id("rtAS_registration_username")).sendKeys("test.sel");
+		driver.findElement(By.id("rtAS_registration_username")).sendKeys("test.sel");//enter already registered username
 		driver.findElement(By.id("rtAS_registration_email")).click();
+		//wait for error message on page
 		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.className("not-available")));
 		System.out.println("User Already Exists");
 }
