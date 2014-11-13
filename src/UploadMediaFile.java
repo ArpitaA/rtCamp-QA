@@ -18,18 +18,8 @@ public class UploadMediaFile {
 		//WebDriver driver=new ChromeDriver();
 		driver.get("http://demo.rtcamp.com/rtmedia/");
 		Thread.sleep(5000);
-		Login(driver);
+		Login.UserLogin(driver);
 		uploadmedia(driver);
-	}
-	public static void Login(WebDriver driver) throws InterruptedException
-	{
-		driver.findElement(By.cssSelector(".rtp-login.button.tiny")).click();
-		Thread.sleep(5000);
-		driver.findElement(By.id("bp-login-widget-user-login")).sendKeys("test.sel");
-		driver.findElement(By.id("bp-login-widget-user-pass")).sendKeys("testsel");
-		driver.findElement(By.id("bp-login-widget-submit")).click();
-		new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.rtp-current-user-avatar.dropdown[title='test-sel']")));
-		System.out.println("User logged-in successfully");
 	}
 	public static void uploadmedia(WebDriver driver) throws InterruptedException, AWTException
 	{
