@@ -10,8 +10,10 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
+import org.testng.annotations.Test;
 public class UploadMediaFile {
-	public static void main(String[] args) throws InterruptedException, AWTException {
+	@Test
+	public static void UploadMediaFile_main() throws InterruptedException, AWTException {
 		WebDriver driver=new FirefoxDriver();
 		//for chrome browser
 		//System.setProperty("webdriver.chrome.driver", "chromedriver.exe path");
@@ -20,21 +22,27 @@ public class UploadMediaFile {
 		Thread.sleep(5000);
 		Login.UserLogin(driver);
 		uploadmedia(driver);
+		driver.close();
 	}
 	public static void uploadmedia(WebDriver driver) throws InterruptedException, AWTException
 	{
-		driver.get("http://demo.rtcamp.com/rtmedia/members/test-sel/media/");//link for media page 
-		Thread.sleep(3000);
-		driver.findElement(By.id("rtm_show_upload_ui")).click();//click on upload
-		Thread.sleep(3000);
-		Select album=new Select(driver.findElement(By.className("rtmedia-user-album-list")));//select album
-		album.selectByVisibleText("Wall Posts");
+		//driver.get("http://demo.rtcamp.com/rtmedia/members/test-sel/media/");
+		driver.findElement(By.className("rtp-user-name")).click();//click on username
 		Thread.sleep(2000);
-		Select privacy=new Select(driver.findElement(By.id("rtSelectPrivacy")));//select privacy for media 
-		privacy.selectByVisibleText("Private");
+		driver.findElement(By.cssSelector("a.activity[title='Activity']")).click();//click on activity
+		Thread.sleep(5000);
+		driver.findElement(By.id("media-personal-li")).click();//click on media
+		Thread.sleep(5000);
+		driver.findElement(By.id("rtm_show_upload_ui")).click();//click on upload button
+		Thread.sleep(3000);
+		Select album=new Select(driver.findElement(By.className("rtmedia-user-album-list")));
+		album.selectByVisibleText("Wall Posts");//select album 
+		Thread.sleep(2000);
+		Select privacy=new Select(driver.findElement(By.id("rtSelectPrivacy")));
+		privacy.selectByVisibleText("Private");//select privacy
 		driver.findElement(By.id("rtMedia-upload-button")).click();//click on upload button
 		Thread.sleep(5000);
-		setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");//path for image
+		setClipboardData("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");//image path
 		//native key strokes for CTRL, V and ENTER keys
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -44,12 +52,12 @@ public class UploadMediaFile {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		robot.delay(1000);
-		//wait for upload status
+		//wait until file is uploaded
 		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.className("plupload_file_status")));
 		driver.findElement(By.id("rtmedia_upload_terms_conditions")).click();//accept terms and conditions
-		driver.findElement(By.className("start-media-upload")).click();//click on upload media
-		//wait until media is uploaded
-		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.className("rtmedia-list-item")));
+		driver.findElement(By.className("start-media-upload")).click();//click to start uploading
+		//wait until media in uploaded
+		new WebDriverWait(driver,60).until(ExpectedConditions.textToBePresentInElement(By.className("plupload_file_status"), "Uploaded"));
 		System.out.println("File uploaded to media successfully");
 	}
 	public static void setClipboardData(String string) {

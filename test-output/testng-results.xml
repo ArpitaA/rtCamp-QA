@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="80899" started-at="2014-11-17T07:12:17Z" finished-at="2014-11-17T07:13:38Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="80899" started-at="2014-11-17T07:12:17Z" finished-at="2014-11-17T07:13:38Z">
+      <class name="UploadMediaURL">
+        <test-method status="PASS" signature="UploadMediaURL_main()[pri:0, instance:UploadMediaURL@e0b1d6]" name="UploadMediaURL_main" duration-ms="80864" started-at="2014-11-17T12:42:17Z" finished-at="2014-11-17T12:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UploadMediaURL_main -->
+      </class> <!-- UploadMediaURL -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
